@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# Training outputs / large artifacts
+outputs/
+runs/
+*.pt
+*.pth
+*.ckpt
+*.pth.tar
+
+# Data (don’t commit datasets or NIfTI files)
+data/
+*.nii
+*.nii.gz
+
+# VS Code
+.vscode/
+
+# OS noise
+.DS_Store
+Thumbs.db
