@@ -177,3 +177,37 @@ class Trainer:
             plt.close(fig)
         except Exception as e:
             print(f"Plotting skipped: {e}")
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--epochs", type=int, default=50)
+    ap.add_argument("--batch-size", type=int, default=8)
+    ap.add_argument("--lr", type=float, default=3e-4)
+    ap.add_argument("--wd", type=float, default=1e-5)
+    ap.add_argument("--save-dir", type=str, default="./checkpoints")
+    args = ap.parse_args()
+
+    device = _device()
+    print(f"Device: {device}")
+
+    # Your dataset.py returns:
+    #   training_data_set, training_data_loader, test_data_set, test_data_loader, validation_data_set, validation_data_loader
+    tr_ds, tr_dl, te_ds, te_dl, va_ds, va_dl = get_datasets_and_data_loaders(batch_size=args.batch_size)
+
+    # quick shape check (optional but helpful)
+    try:
+        shape = _ensure_sample_shapes(tr_dl, device)
+        print(f"Sample batch shape OK: {shape}")
+    except Exception as e:
+        print(f"Dataset shape check failed: {e}")
+
+    # Model
+    model = ImprovedUNet(in_channels=1, num_classes=1, base_channels=64)
+
+    # Trainer
+    trainer = Trainer(model, tr_dl, va_dl, te_dl, device, save_dir=args.save_dir)
+    trainer.train(epochs=args.epochs, lr=args.lr, weight_decay=args.wd, patience=10, min_delta=1e-4)
+
+
+if __name__ == "__main__":
+    main()
