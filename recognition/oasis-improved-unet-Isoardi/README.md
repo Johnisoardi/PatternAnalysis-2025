@@ -47,17 +47,15 @@ Followed the dataset’s provided splits:
 This preserves an unseen test set for fair evaluation and uses a validation set for early stopping and hyperparameter tuning without leaking test information.
 
 ## Environment & Dependencies
-| Dependency  | Recommended Version     | Notes                                                |
-|-------------|--------------------------|------------------------------------------------------|
-| Python      | 3.10+                    | Conda environment already satisfies this. 
-                |
-| PyTorch     | ≥ 2.1 (CUDA 11.8+)       | Mixed precision (`torch.amp`) accelerates GPU training.   |
-| Torchvision | ≥ 0.16                   | Provides transforms and normalisation utilities.     |
-| NumPy       | ≥ 1.26                   | Array ops and numerical utilities.                   |
-| Pillow      | ≥ 10                     | Image I/O and conversion.                            |
-| Matplotlib  | ≥ 3.7                    | Curve and prediction plots.                          |
-| tqdm        | ≥ 4.66                   | Progress bars during training/eval.                  |
-
+| Dependency  | Recommended Version | Notes                                                |
+|-------------|---------------------|------------------------------------------------------|
+| Python      | 3.10+               | Conda environment already satisfies this.           |
+| PyTorch     | ≥ 2.1 (CUDA 11.8+)  | Mixed precision (`torch.amp`) accelerates GPU training. |
+| Torchvision | ≥ 0.16              | Provides transforms and normalisation utilities.    |
+| NumPy       | ≥ 1.26              | Array ops and numerical utilities.                  |
+| Pillow      | ≥ 10                | Image I/O and conversion.                           |
+| Matplotlib  | ≥ 3.7               | Curve and prediction plots.                         |
+| tqdm        | ≥ 4.66              | Progress bars during training/eval.                 |                 |
 
 ## Training
 From the folder containing `modules.py` and `dataset.py`:
